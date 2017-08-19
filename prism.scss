@@ -50,13 +50,13 @@
     .prism-active-box-lg:active,
     .prism-focus-box-lg:focus,
     .prism-hover-box-lg:hover {
-        @include prism-box($n + 2, $n, 4px);
+        @include prism-box($n + 2, $n, $prism_shadow_offset_lg);
     }
     .prism-box-sm,
     .prism-active-box-sm:active,
     .prism-focus-box-sm:focus,
     .prism-hover-box-sm:hover {
-        @include prism-box($n + 1, $n, 2px);
+        @include prism-box($n + 1, $n, $prism_shadow_offset_sm);
     }
     .prism-blank,
     .prism-active-blank:active,
@@ -69,13 +69,13 @@
     .prism-active-notch-sm:active,
     .prism-focus-notch-sm:focus,
     .prism-hover-notch-sm:hover {
-        @include prism-notch($n - 1, 2px);
+        @include prism-notch($n - 1, $prism_shadow_offset_sm);
     }
     .prism-notch-lg,
     .prism-active-notch-lg:active,
     .prism-focus-notch-lg:focus,
     .prism-hover-notch-lg:hover {
-        @include prism-notch($n - 2, 4px);
+        @include prism-notch($n - 2, $prism_shadow_offset_lg);
     }
     @if $depth > 0 {
         .prism-box-lg {
@@ -122,9 +122,9 @@
     .prism-focus-notch-lg:focus,
     .prism-hover-notch-lg:hover {
         position: relative;
-        transition: background-color 0.2s,
-                    box-shadow 0.2s,
-                    color 0.2s;
+        transition: background-color $prism_transition_duration,
+                    box-shadow $prism_transition_duration,
+                    color $prism_transition_duration;
     }
     .prism-box-lg:after,
     .prism-active-box-lg:active:after,
@@ -150,12 +150,12 @@
         position: absolute;
         top: 0;
         left: 0;
-        transition: clip-path 0.2s,
-                    -webkit-clip-path 0.2s,
-                    -moz-clip-path 0.2s,
-                    -ms-clip-path 0.2s,
-                    width 0.2s,
-                    height 0.2s,
-                    background-color 0.2s;
+        transition: clip-path $prism_transition_duration,
+                    -webkit-clip-path $prism_transition_duration,
+                    -moz-clip-path $prism_transition_duration,
+                    -ms-clip-path $prism_transition_duration,
+                    width $prism_transition_duration,
+                    height $prism_transition_duration,
+                    background-color $prism_transition_duration;
     }
 }
