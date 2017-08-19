@@ -1,13 +1,13 @@
 @import "prism-config";
 
-@mixin clip-path($clip) {
+@mixin prism-clip-path($clip) {
     -webkit-clip-path: $clip;
     -moz-clip-path: $clip;
     -ms-clip-path: $clip;
     clip-path: $clip;
 }
 
-@mixin box($n, $sh_n, $length) {
+@mixin prism-box($n, $sh_n, $length) {
     $n: min(9, max(1, $n));
     $sh_n: min(9, max(1, $sh_n));
     $bg_color: nth($prism_bg_list, $n);
@@ -22,7 +22,7 @@
             width: calc(100% + #{$length});
             height: calc(100% + #{$length});
             background-color: $sh_color;
-            @include clip-path(
+            @include prism-clip-path(
                 polygon(0 calc(100% - #{$length}),
                         $length 100%,
                         100% 100%,
@@ -35,7 +35,7 @@
     }
 }
 
-@mixin notch($n, $length) {
+@mixin prism-notch($n, $length) {
     $n: min(9, max(1, $n));
     $bg_color: nth($prism_bg_list, $n);
     $sh_color: nth($prism_sh_list, $n);
@@ -45,61 +45,53 @@
     color: $tx_color;
 }
 
-@mixin recursive-prism($n, $depth) {
+@mixin prism-recursive($n, $depth) {
     .prism-box-lg,
     .prism-active-box-lg:active,
     .prism-focus-box-lg:focus,
     .prism-hover-box-lg:hover {
-        @include box($n + 2, $n, 4px);
+        @include prism-box($n + 2, $n, 4px);
     }
     .prism-box-sm,
     .prism-active-box-sm:active,
     .prism-focus-box-sm:focus,
     .prism-hover-box-sm:hover {
-        @include box($n + 1, $n, 2px);
+        @include prism-box($n + 1, $n, 2px);
     }
     .prism-blank,
     .prism-active-blank:active,
     .prism-focus-blank:focus,
     .prism-hover-blank:hover {
-        @include box($n, $n, 0px);
-        @include notch($n, 0px);
+        @include prism-box($n, $n, 0px);
+        @include prism-notch($n, 0px);
     }
     .prism-notch-sm,
     .prism-active-notch-sm:active,
     .prism-focus-notch-sm:focus,
     .prism-hover-notch-sm:hover {
-        @include notch($n - 1, 2px);
+        @include prism-notch($n - 1, 2px);
     }
     .prism-notch-lg,
     .prism-active-notch-lg:active,
     .prism-focus-notch-lg:focus,
     .prism-hover-notch-lg:hover {
-        @include notch($n - 2, 4px);
+        @include prism-notch($n - 2, 4px);
     }
-    .prism-box-lg {
-        @if $depth > 0 {
-            @include recursive-prism($n + 2, $depth - 1);
+    @if $depth > 0 {
+        .prism-box-lg {
+            @include prism-recursive($n + 2, $depth - 1);
         }
-    }
-    .prism-box-sm {
-        @if $depth > 0 {
-            @include recursive-prism($n + 1, $depth - 1);
+        .prism-box-sm {
+            @include prism-recursive($n + 1, $depth - 1);
         }
-    }
-    .prism-blank {
-        @if $depth > 0 {
-            @include recursive-prism($n, $depth - 1);
+        .prism-blank {
+            @include prism-recursive($n, $depth - 1);
         }
-    }
-    .prism-notch-sm {
-        @if $depth > 0 {
-            @include recursive-prism($n - 1, $depth - 1);
+        .prism-notch-sm {
+            @include prism-recursive($n - 1, $depth - 1);
         }
-    }
-    .prism-notch-lg {
-        @if $depth > 0 {
-            @include recursive-prism($n - 2, $depth - 1);
+        .prism-notch-lg {
+            @include prism-recursive($n - 2, $depth - 1);
         }
     }
 }
@@ -107,7 +99,7 @@
 .prism-#{$prism_base_suffix} {
     background-color: nth($prism_bg_list, $prism_base_index);
     color: nth($prism_tx_list, $prism_base_index);
-    @include recursive-prism($prism_base_index, $prism_max_depth);
+    @include prism-recursive($prism_base_index, $prism_max_depth);
 
     .prism-box-lg,
     .prism-active-box-lg:active,
