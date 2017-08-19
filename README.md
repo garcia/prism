@@ -1,14 +1,13 @@
 # Prism
 
-A stylish faux-3D effect in pure CSS.  [Demo](https://garcia.sh/prism/)
+A stylish faux-3D effect in pure CSS.
 
-* Prism is built on two complementary structures: boxes, which extrude out of the page, and notches, which sink into the page. Box shadows are special – look at the corners!
-* The virtual “depth” of nested boxes and notches is tracked up to a customizable recursion limit.
-* Built-in `-active-`, `-focus-`, and `-hover-` variants of classes can dynamically change the depth of elements. Still no JavaScript in sight!
+[**Demo**](https://garcia.sh/prism/)
 
 ## Usage
 
 Prism is a Sass project. Compile or include [`prism.scss`](prism.scss) as you would any other Sass file. If you need help, [the Sass guide](http://sass-lang.com/guide) is a great resource.
+
 Apply the class `prism-base` to the outermost container (e.g. your `<body>` tag) to begin using Prism.
 
 The file [`_prism-config.scss`](_prism-config.scss) contains everything you would want to customize.
