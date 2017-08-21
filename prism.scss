@@ -2,8 +2,6 @@
 
 @mixin prism-clip-path($clip) {
     -webkit-clip-path: $clip;
-    -moz-clip-path: $clip;
-    -ms-clip-path: $clip;
     clip-path: $clip;
 }
 
@@ -16,7 +14,7 @@
     background-color: $bg_color;
     box-shadow: $length $length 0 $sh_color;
     color: $tx_color;
-    @supports (-webkit-clip-path: polygon(0 0)) or (-moz-clip-path: polygon(0 0)) or (-ms-clip-path: polygon(0 0)) or (clip-path: polygon(0 0)) {
+    @supports  (-webkit-clip-path: polygon(0 0)) or (clip-path: polygon(0 0)) {
         box-shadow: none;
         &:after {
             width: calc(100% + #{$length});
@@ -125,37 +123,16 @@
         transition: background-color $prism_transition_duration,
                     box-shadow $prism_transition_duration,
                     color $prism_transition_duration;
-    }
-    .prism-box-lg:after,
-    .prism-active-box-lg:active:after,
-    .prism-focus-box-lg:focus:after,
-    .prism-hover-box-lg:hover:after,
-    .prism-box-sm:after,
-    .prism-active-box-sm:active:after,
-    .prism-focus-box-sm:focus:after,
-    .prism-hover-box-sm:hover:after,
-    .prism-blank:after,
-    .prism-active-blank:active:after,
-    .prism-focus-blank:focus:after,
-    .prism-hover-blank:hover:after,
-    .prism-notch-sm:after,
-    .prism-active-notch-sm:active:after,
-    .prism-focus-notch-sm:focus:after,
-    .prism-hover-notch-sm:hover:after,
-    .prism-notch-lg:after,
-    .prism-active-notch-lg:active:after,
-    .prism-focus-notch-lg:focus:after,
-    .prism-hover-notch-lg:hover:after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        transition: clip-path $prism_transition_duration,
-                    -webkit-clip-path $prism_transition_duration,
-                    -moz-clip-path $prism_transition_duration,
-                    -ms-clip-path $prism_transition_duration,
-                    width $prism_transition_duration,
-                    height $prism_transition_duration,
-                    background-color $prism_transition_duration;
+        &:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: -webkit-clip-path $prism_transition_duration,
+                        clip-path $prism_transition_duration,
+                        width $prism_transition_duration,
+                        height $prism_transition_duration,
+                        background-color $prism_transition_duration;
+        }
     }
 }
